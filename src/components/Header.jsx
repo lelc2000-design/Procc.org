@@ -74,19 +74,19 @@ const Header = ({ isScrolled }) => {
           : 'bg-white/80 backdrop-blur-sm'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
+      <nav className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo con más espacio */}
           <motion.a
             href="#"
-            className="flex items-center space-x-3"
+            className="flex items-center pr-8 md:pr-12"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <img 
               src="https://www.procc.org/wp-content/uploads/2019/06/logo_centrado.png" 
               alt="ProCC Logo" 
-              className="h-14 md:h-16 w-auto"
+              className="h-12 md:h-14 lg:h-16 w-auto"
               onError={(e) => {
                 e.target.style.display = 'none';
                 const fallback = e.target.nextElementSibling;
@@ -98,8 +98,8 @@ const Header = ({ isScrolled }) => {
             </div>
           </motion.a>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Menu con más espacio */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {menuItems.map((item, idx) => (
               <div
                 key={idx}
