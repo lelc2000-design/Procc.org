@@ -7,10 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'procc-primary': '#0051A5',
-        'procc-secondary': '#003D7A',
-        'procc-accent': '#60A5FA',
-        'procc-light': '#E0F2FE',
+        'procc-primary': '#6B46C1',      // Púrpura principal (del sitio original)
+        'procc-secondary': '#8B5CF6',   // Púrpura secundario
+        'procc-accent': '#A78BFA',      // Púrpura acento
+        'procc-dark': '#4C1D95',        // Púrpura oscuro
+        'procc-light': '#EDE9FE',       // Púrpura claro
+        'procc-text': '#1F2937',       // Texto principal
+        'procc-text-light': '#6B7280',  // Texto secundario
       },
     },
   },

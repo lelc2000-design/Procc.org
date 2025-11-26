@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Somos from './components/Somos'
+import Equipo from './components/Equipo'
+import Libros from './components/Libros'
 import Estamos from './components/Estamos'
 import Hacemos from './components/Hacemos'
 import Decimos from './components/Decimos'
@@ -31,9 +33,11 @@ function App() {
       <main>
         <Hero />
         <Somos />
+        <Equipo />
         <Estamos />
         <Hacemos />
         <Decimos />
+        <Libros />
         <Blog />
         <Calendario />
         <Comunidad />

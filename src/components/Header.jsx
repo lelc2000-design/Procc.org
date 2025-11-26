@@ -82,7 +82,16 @@ const Header = ({ isScrolled }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="text-3xl font-bold text-procc-primary">
+            <img 
+              src="/logo-procc.svg" 
+              alt="ProCC Logo" 
+              className="h-12 w-auto"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'block';
+              }}
+            />
+            <div className="text-3xl font-bold text-procc-primary" style={{ display: 'none' }}>
               ProCC
             </div>
           </motion.a>
