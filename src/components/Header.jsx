@@ -6,15 +6,12 @@ const Header = ({ isScrolled, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
 
-  const handleNavigation = (href) => {
+  const handleNavigation = (href, tab = null) => {
     if (href && href.startsWith('#')) {
-      // Si tiene parámetro ?tab=, extraerlo
-      const [section, query] = href.replace('#', '').split('?')
-      const params = new URLSearchParams(query || '')
-      const tab = params.get('tab')
+      const section = href.replace('#', '')
       
+      // Si hay tab, guardarlo en sessionStorage
       if (tab) {
-        // Guardar el tab en sessionStorage para que el componente lo lea
         sessionStorage.setItem(`${section}_tab`, tab)
       }
       
@@ -191,12 +188,7 @@ const Header = ({ isScrolled, setActiveSection }) => {
                             href={sub.href}
                             onClick={(e) => {
                               e.preventDefault()
-                              // Si tiene tab, pasar el tab en el hash
-                              if (sub.tab) {
-                                handleNavigation(`${sub.href}?tab=${sub.tab}`)
-                              } else {
-                                handleNavigation(sub.href)
-                              }
+                              handleNavigation(sub.href, sub.tab)
                             }}
                             className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary cursor-pointer"
                           >
@@ -250,7 +242,7 @@ const Header = ({ isScrolled, setActiveSection }) => {
                           href={sub.href}
                           onClick={(e) => {
                             e.preventDefault()
-                            handleNavigation(sub.href)
+                            handleNavigation(sub.href, sub.tab)
                             setIsMenuOpen(false)
                           }}
                           className="block py-1 text-gray-600 hover:text-procc-primary text-sm cursor-pointer"

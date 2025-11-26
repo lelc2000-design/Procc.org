@@ -2,12 +2,19 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { MdSchool, MdPeople, MdFavorite, MdVisibility, MdBusiness, MdFamilyRestroom, MdChildCare, MdWoman, MdElderly, MdSchool as MdEducation, MdGroups } from 'react-icons/md'
 
-const Hacemos = ({ initialTab = 'formacion' }) => {
-  const [activeTab, setActiveTab] = useState(initialTab)
+const Hacemos = ({ initialTab = null }) => {
+  const [activeTab, setActiveTab] = useState(initialTab || 'formacion')
 
-  // Actualizar tab cuando cambia el prop
+  // Actualizar tab cuando cambia el prop o desde sessionStorage
   useEffect(() => {
-    setActiveTab(initialTab)
+    // Leer tab desde sessionStorage si viene del menú
+    const storedTab = sessionStorage.getItem('hacemos_tab')
+    if (storedTab) {
+      setActiveTab(storedTab)
+      sessionStorage.removeItem('hacemos_tab')
+    } else if (initialTab) {
+      setActiveTab(initialTab)
+    }
   }, [initialTab])
 
   const areas = {
