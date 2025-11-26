@@ -13,7 +13,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 pt-24 md:pt-28">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 pt-20">
       {/* Background sutil con gradiente muy ligero y verde claro del logo */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-green-50/20 to-white"></div>
       
