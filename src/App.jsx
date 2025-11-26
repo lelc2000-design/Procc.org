@@ -34,16 +34,38 @@ function App() {
       const hash = window.location.hash.replace('#', '') || 'inicio'
       setActiveSection(hash)
       setShowFooter(false) // Ocultar footer al cambiar de sección
-      // Scroll al top cuando cambia la sección - FORZADO
-      setTimeout(() => {
-        const mainElement = mainRef.current
-        if (mainElement) {
-          mainElement.scrollTo({ top: 0, behavior: 'instant' })
-        }
-        window.scrollTo({ top: 0, behavior: 'instant' })
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
-      }, 0)
+      
+      // Si es una subsección de SOMOS (proyecto, metodologia, red, equipo, instituciones)
+      // o de HACEMOS (formacion, intervencion, atencion, supervision, asesoria)
+      // mantener la sección principal pero hacer scroll a la subsección
+      const somosSubsections = ['proyecto', 'metodologia', 'red', 'equipo', 'instituciones']
+      const hacemosSubsections = ['formacion', 'intervencion', 'atencion', 'supervision', 'asesoria']
+      
+      if (somosSubsections.includes(hash)) {
+        // Mantener SOMOS activo
+        setActiveSection('somos')
+        // Hacer scroll a la subsección después de renderizar
+        setTimeout(() => {
+          const element = document.getElementById(hash)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 100)
+      } else if (hacemosSubsections.includes(hash)) {
+        // Ya se maneja en renderSection con initialTab
+        // No hacer scroll al top
+      } else {
+        // Scroll al top cuando cambia la sección - FORZADO
+        setTimeout(() => {
+          const mainElement = mainRef.current
+          if (mainElement) {
+            mainElement.scrollTo({ top: 0, behavior: 'instant' })
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' })
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+        }, 0)
+      }
     }
 
     // Inicializar con el hash actual
