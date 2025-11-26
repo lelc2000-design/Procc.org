@@ -9,9 +9,9 @@ import {
   Users, 
   Clock,
   Plus,
-  X,
   CheckCircle
 } from 'react-icons/md'
+import { HiX } from 'react-icons/hi'
 
 const Calendario = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -394,12 +394,12 @@ const Calendario = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold">Crear Nuevo Evento</h3>
-                <button
-                  onClick={() => setShowEventForm(false)}
-                  className="p-2 hover:bg-gray-100 rounded-lg"
-                >
-                  <X className="text-2xl" />
-                </button>
+                  <button
+                    onClick={() => setShowEventForm(false)}
+                    className="p-2 hover:bg-gray-100 rounded-lg"
+                  >
+                    <HiX className="text-2xl" />
+                  </button>
               </div>
               <form onSubmit={handleSubmitEvent} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -692,7 +692,7 @@ const Calendario = () => {
                     onClick={() => setSelectedEvent(null)}
                     className="p-2 hover:bg-gray-100 rounded-lg"
                   >
-                    <X className="text-2xl" />
+                    <HiX className="text-2xl" />
                   </button>
                 </div>
 
