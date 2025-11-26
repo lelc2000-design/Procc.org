@@ -57,7 +57,7 @@ const Comunidad = () => {
     { icon: <MdPeople className="text-4xl" />, number: '5,000+', label: 'Miembros Activos' },
     { icon: <MdMessage className="text-4xl" />, number: '12K+', label: 'Mensajes Mensuales' },
     { icon: <MdShare className="text-4xl" />, number: '3K+', label: 'Recursos Compartidos' },
-    { icon: <TrendingUp className="text-4xl" />, number: '150+', label: 'Países Representados' }
+    { icon: <MdTrendingUp className="text-4xl" />, number: '150+', label: 'Países Representados' }
   ]
 
   return (
@@ -211,7 +211,7 @@ const Comunidad = () => {
               description: 'Accede a materiales, guías y recursos solo para miembros'
             },
             {
-              icon: <TrendingUp className="text-4xl text-procc-primary" />,
+              icon: <MdTrendingUp className="text-4xl text-procc-primary" />,
               title: 'Crecimiento Profesional',
               description: 'Desarrolla tus habilidades y expande tu red profesional'
             }
