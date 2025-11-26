@@ -12,11 +12,13 @@ const UltimasPublicaciones = () => {
     .slice(0, 6)
 
   return (
-    <section id="ultimas-publicaciones" className="section-padding bg-gradient-to-b from-green-50/50 via-white to-white relative">
+    <section id="ultimas-publicaciones" className="section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative">
       {/* Verde claro del logo debajo */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/40 to-transparent pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Contenedor Premium con Borde */}
+        <div className="section-container-premium p-8 md:p-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +43,7 @@ const UltimasPublicaciones = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="card-premium group hover:shadow-premium transition-all duration-300 bg-white overflow-hidden"
+              className="card-premium group hover:shadow-premium-lg transition-all duration-300 bg-white overflow-hidden border-2 border-gray-200 hover:border-procc-primary"
             >
               {/* Imagen */}
               <div className="relative h-40 bg-gradient-to-br from-procc-primary to-procc-secondary overflow-hidden">
@@ -105,6 +107,7 @@ const UltimasPublicaciones = () => {
             <MdArrowForward className="text-lg" />
           </motion.a>
         </motion.div>
+        </div>
       </div>
     </section>
   )

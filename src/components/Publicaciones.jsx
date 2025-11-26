@@ -21,11 +21,13 @@ const Publicaciones = () => {
     : podcastEpisodes
 
   return (
-    <section id="publicaciones" className="section-padding bg-gradient-to-b from-white via-green-50/30 to-white relative">
+    <section id="publicaciones" className="section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative">
       {/* Verde claro del logo debajo */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/40 to-transparent pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Contenedor Premium con Borde */}
+        <div className="section-container-premium p-8 md:p-12 mb-8">
         {/* Header Premium */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -90,7 +92,7 @@ const Publicaciones = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.6, delay: idx * 0.05 }}
-                className="card-premium group hover:shadow-premium transition-all duration-300 overflow-hidden bg-white"
+                className="card-premium group hover:shadow-premium-lg transition-all duration-300 overflow-hidden bg-white border-2 border-gray-200 hover:border-procc-primary"
               >
                 {/* Imagen Premium con overlay */}
                 <div className="relative h-56 bg-gradient-to-br from-procc-primary via-procc-secondary to-procc-green overflow-hidden">
@@ -208,6 +210,7 @@ const Publicaciones = () => {
             Ver Todas las Publicaciones en el Sitio Oficial →
           </motion.a>
         </motion.div>
+        </div>
       </div>
     </section>
   )

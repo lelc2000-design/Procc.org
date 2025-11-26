@@ -7,10 +7,12 @@ const Equipo = () => {
   const coordinadores = teamMembers.filter(m => m.id !== 'mirtha-cucco')
 
   return (
-    <section id="equipo" className="section-padding bg-gradient-to-b from-gray-50 via-green-50/20 to-white relative">
+    <section id="equipo" className="section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative">
       {/* Verde claro del logo debajo */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/30 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto">
+        {/* Contenedor Premium con Borde */}
+        <div className="section-container-premium p-8 md:p-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
