@@ -31,7 +31,7 @@ const Libros = () => {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="card-premium group hover:shadow-premium transition-all duration-300 overflow-hidden"
             >
-              <div className="relative h-64 bg-gradient-to-br from-procc-primary to-procc-secondary overflow-hidden">
+              <div className="relative h-64 bg-gradient-to-br from-procc-primary via-procc-secondary to-procc-green overflow-hidden">
                 {book.cover ? (
                   <img
                     src={book.cover}
@@ -45,27 +45,30 @@ const Libros = () => {
                     }}
                   />
                 ) : null}
-                <div className="absolute inset-0 bg-gradient-to-br from-procc-primary/90 to-procc-secondary/90 flex items-center justify-center">
-                  <MdMenuBook className="text-8xl text-white/40" />
+                <div className="absolute inset-0 bg-gradient-to-br from-procc-primary/85 via-procc-secondary/85 to-procc-green/85 flex items-center justify-center">
+                  <MdMenuBook className="text-8xl text-white/50" />
                 </div>
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                   <span className="text-xs font-semibold text-procc-primary">{book.year}</span>
                 </div>
               </div>
               
-              <div className="p-6">
-                <div className="mb-2">
+              <div className="p-6 relative">
+                {/* Verde claro del logo debajo del texto */}
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-procc-green-light/30 to-transparent pointer-events-none"></div>
+                
+                <div className="mb-2 relative z-10">
                   <span className="text-xs font-semibold text-procc-accent uppercase tracking-wide">
                     {book.category}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 relative z-10">
                   {book.title}
                 </h3>
-                <p className="text-procc-primary font-semibold mb-3">
+                <p className="text-procc-primary font-semibold mb-3 relative z-10">
                   {book.author}
                 </p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 relative z-10">
                   {book.description}
                 </p>
                 

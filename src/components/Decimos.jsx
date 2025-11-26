@@ -79,7 +79,9 @@ const Decimos = () => {
   ]
 
   return (
-    <section id="decimos" className="section-padding bg-white">
+    <section id="decimos" className="section-padding bg-gradient-to-b from-white via-green-50/20 to-white relative">
+      {/* Verde claro del logo debajo */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/30 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
