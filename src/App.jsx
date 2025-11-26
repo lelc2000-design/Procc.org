@@ -19,6 +19,7 @@ import Blog from './components/Blog'
 import Calendario from './components/Calendario'
 import Seguridad from './components/Seguridad'
 import Comunidad from './components/Comunidad'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
@@ -137,6 +138,7 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+      <Footer />
     </div>
   )
 }
