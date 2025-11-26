@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Somos from './components/Somos'
+import Estamos from './components/Estamos'
+import Hacemos from './components/Hacemos'
+import Decimos from './components/Decimos'
+import Herramientas from './components/Herramientas'
+import Blog from './components/Blog'
+import Calendario from './components/Calendario'
+import Seguridad from './components/Seguridad'
+import Comunidad from './components/Comunidad'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen bg-white">
+      <Header isScrolled={isScrolled} />
+      <main>
+        <Hero />
+        <Somos />
+        <Estamos />
+        <Hacemos />
+        <Decimos />
+        <Blog />
+        <Calendario />
+        <Comunidad />
+        <Seguridad />
+        <Herramientas />
+      </main>
+      <Footer />
+    </div>
   )
 }
 
