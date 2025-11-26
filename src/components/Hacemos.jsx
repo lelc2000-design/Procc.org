@@ -60,7 +60,7 @@ const Hacemos = () => {
   ]
 
   return (
-    <section id="hacemos" className="min-h-[calc(100vh-5rem)] section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-y-auto">
+    <section id="hacemos" className="min-h-screen section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative pt-24 pb-16">
       {/* Verde claro del logo debajo */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/30 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto">

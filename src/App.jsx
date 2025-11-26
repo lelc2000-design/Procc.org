@@ -10,6 +10,10 @@ import Hacemos from './components/Hacemos'
 import Decimos from './components/Decimos'
 import Publicaciones from './components/Publicaciones'
 import UltimasPublicaciones from './components/UltimasPublicaciones'
+import Videos from './components/Videos'
+import Fotografias from './components/Fotografias'
+import Podcasts from './components/Podcasts'
+import Hablemos from './components/Hablemos'
 import Herramientas from './components/Herramientas'
 import Blog from './components/Blog'
 import Calendario from './components/Calendario'
@@ -31,8 +35,12 @@ function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'inicio'
       setActiveSection(hash)
-      // Scroll al top cuando cambia la sección
-      window.scrollTo(0, 0)
+      // Scroll al top cuando cambia la sección - FORZADO
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      }, 0)
     }
 
     // Inicializar con el hash actual
@@ -47,7 +55,7 @@ function App() {
     }
   }, [])
 
-  // Función para renderizar solo la sección activa
+  // Función para renderizar solo la sección activa - CADA UNA INDEPENDIENTE
   const renderSection = () => {
     switch(activeSection) {
       case 'inicio':
@@ -56,9 +64,10 @@ function App() {
       case 'proyecto':
       case 'metodologia':
       case 'red':
-      case 'equipo':
       case 'instituciones':
         return <Somos />
+      case 'equipo':
+        return <Equipo />
       case 'estamos':
       case 'andalucia':
       case 'aragon':
@@ -75,12 +84,19 @@ function App() {
       case 'asesoria':
         return <Hacemos />
       case 'decimos':
-      case 'publicaciones':
-      case 'libros':
-      case 'videos':
-      case 'podcasts':
-      case 'fotografias':
         return <Decimos />
+      case 'publicaciones':
+        return <Publicaciones />
+      case 'ultimas-publicaciones':
+        return <UltimasPublicaciones />
+      case 'libros':
+        return <Libros />
+      case 'videos':
+        return <Videos />
+      case 'podcasts':
+        return <Podcasts />
+      case 'fotografias':
+        return <Fotografias />
       case 'blog':
         return <Blog />
       case 'calendario':
@@ -91,6 +107,8 @@ function App() {
         return <Seguridad />
       case 'contacto':
       case 'hablemos':
+        return <Hablemos />
+      case 'herramientas':
         return <Herramientas />
       default:
         return <Hero />
@@ -98,17 +116,23 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="h-screen bg-white overflow-hidden flex flex-col">
       <Header isScrolled={isScrolled} setActiveSection={setActiveSection} />
-      <main className="relative">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollBehavior: 'smooth' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="min-h-[calc(100vh-5rem)]"
+            className="w-full min-h-full"
+            onAnimationStart={() => {
+              // Forzar scroll al top cuando inicia la animación
+              window.scrollTo({ top: 0, behavior: 'instant' })
+              document.documentElement.scrollTop = 0
+              document.body.scrollTop = 0
+            }}
           >
             {renderSection()}
           </motion.div>
