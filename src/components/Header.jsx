@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'react-icons/md'
+import { Menu } from 'react-icons/md'
+import { HiX } from 'react-icons/hi'
 
 const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -101,7 +102,7 @@ const Header = ({ isScrolled }) => {
                   className="text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase tracking-wide transition-colors duration-200 flex items-center space-x-1"
                 >
                   <span>{item.name}</span>
-                  {item.submenu && <ChevronDown className="text-xs" />}
+                  {item.submenu && <span className="text-xs">▼</span>}
                 </a>
 
                 {item.submenu && (
@@ -135,7 +136,7 @@ const Header = ({ isScrolled }) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-procc-primary transition-colors"
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <HiX size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
