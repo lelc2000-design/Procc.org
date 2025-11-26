@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu } from 'react-icons/md'
-import { HiX } from 'react-icons/hi'
+import { HiMenu, HiX } from 'react-icons/hi'
 
 const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -136,7 +135,7 @@ const Header = ({ isScrolled }) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-procc-primary transition-colors"
           >
-            {isMenuOpen ? <HiX size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
           </button>
         </div>
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, PlayCircle } from 'react-icons/md'
+import { MdKeyboardArrowDown, MdPlayCircle } from 'react-icons/md'
 
 const Hero = () => {
   return (
@@ -87,7 +87,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <span>Conoce más</span>
-              <ArrowDown className="inline-block" />
+              <MdKeyboardArrowDown className="inline-block" />
             </motion.a>
             
             <motion.a
@@ -96,7 +96,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <PlayCircle className="text-2xl" />
+              <MdPlayCircle className="text-2xl" />
               <span>Metodología ProCC</span>
             </motion.a>
           </motion.div>
@@ -136,7 +136,7 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ArrowDown className="text-procc-primary text-3xl" />
+        <MdKeyboardArrowDown className="text-procc-primary text-3xl" />
       </motion.div>
     </section>
   )
