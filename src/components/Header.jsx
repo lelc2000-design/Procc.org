@@ -76,10 +76,10 @@ const Header = ({ isScrolled }) => {
     >
       <nav className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex items-center justify-between h-20">
-          {/* Logo con más espacio */}
+          {/* Logo con MUCHO más espacio */}
           <motion.a
             href="#"
-            className="flex items-center pr-8 md:pr-12"
+            className="flex items-center pr-16 md:pr-20 lg:pr-24 xl:pr-32"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -99,7 +99,7 @@ const Header = ({ isScrolled }) => {
           </motion.a>
 
           {/* Desktop Menu con más espacio */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8 flex-1 justify-end">
             {menuItems.map((item, idx) => (
               <div
                 key={idx}
