@@ -20,33 +20,99 @@ import './App.css'
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('inicio')
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
+    
+    // Detectar hash en URL
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') || 'inicio'
+      setActiveSection(hash)
+      // Scroll al top cuando cambia la sección
+      window.scrollTo(0, 0)
+    }
+
+    // Inicializar con el hash actual
+    handleHashChange()
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('hashchange', handleHashChange)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('hashchange', handleHashChange)
+    }
   }, [])
 
+  // Función para renderizar solo la sección activa
+  const renderSection = () => {
+    switch(activeSection) {
+      case 'inicio':
+        return <Hero />
+      case 'somos':
+      case 'proyecto':
+      case 'metodologia':
+      case 'red':
+      case 'equipo':
+      case 'instituciones':
+        return <Somos />
+      case 'estamos':
+      case 'andalucia':
+      case 'aragon':
+      case 'galicia':
+      case 'madrid':
+      case 'pais-vasco':
+      case 'argentina':
+        return <Estamos />
+      case 'hacemos':
+      case 'formacion':
+      case 'intervencion':
+      case 'atencion':
+      case 'supervision':
+      case 'asesoria':
+        return <Hacemos />
+      case 'decimos':
+      case 'publicaciones':
+      case 'libros':
+      case 'videos':
+      case 'podcasts':
+      case 'fotografias':
+        return <Decimos />
+      case 'blog':
+        return <Blog />
+      case 'calendario':
+        return <Calendario />
+      case 'comunidad':
+        return <Comunidad />
+      case 'seguridad':
+        return <Seguridad />
+      case 'contacto':
+      case 'hablemos':
+        return <Herramientas />
+      default:
+        return <Hero />
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-white">
-      <Header isScrolled={isScrolled} />
-      <main>
-        <Hero />
-        <Somos />
-        <Equipo />
-        <Estamos />
-        <Hacemos />
-        <Decimos />
-        <Libros />
-        <UltimasPublicaciones />
-        <Publicaciones />
-        <Blog />
-        <Calendario />
-        <Comunidad />
-        <Seguridad />
-        <Herramientas />
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      <Header isScrolled={isScrolled} setActiveSection={setActiveSection} />
+      <main className="relative">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSection}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="min-h-[calc(100vh-5rem)]"
+          >
+            {renderSection()}
+          </motion.div>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

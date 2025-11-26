@@ -2,8 +2,18 @@ import { motion } from 'framer-motion'
 import { MdKeyboardArrowDown, MdPlayCircle } from 'react-icons/md'
 
 const Hero = () => {
+  const handleNavigation = (href) => {
+    if (href && href.startsWith('#')) {
+      const section = href.replace('#', '')
+      window.location.hash = section
+      window.scrollTo(0, 0)
+      // Disparar evento para que App.jsx actualice
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    }
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 pt-24 md:pt-28">
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 pt-24 md:pt-28">
       {/* Background sutil con gradiente muy ligero y verde claro del logo */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-green-50/20 to-white"></div>
       
@@ -106,8 +116,12 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             <motion.a
-              href="#proyecto"
-              className="px-8 py-4 bg-procc-primary text-white rounded-full font-semibold text-lg shadow-lg hover:bg-procc-secondary transition-all duration-300 flex items-center space-x-2"
+              href="#somos"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNavigation('#somos')
+              }}
+              className="px-8 py-4 bg-procc-primary text-white rounded-full font-semibold text-lg shadow-lg hover:bg-procc-secondary transition-all duration-300 flex items-center space-x-2 cursor-pointer"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -116,8 +130,12 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="#metodologia"
-              className="px-8 py-4 bg-white text-procc-primary rounded-full font-semibold text-lg shadow-lg border-2 border-procc-primary hover:bg-procc-light transition-all duration-300 flex items-center space-x-2"
+              href="#somos"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNavigation('#somos')
+              }}
+              className="px-8 py-4 bg-white text-procc-primary rounded-full font-semibold text-lg shadow-lg border-2 border-procc-primary hover:bg-procc-light transition-all duration-300 flex items-center space-x-2 cursor-pointer"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >

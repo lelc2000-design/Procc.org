@@ -79,7 +79,7 @@ const Decimos = () => {
   ]
 
   return (
-    <section id="decimos" className="section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative">
+    <section id="decimos" className="min-h-[calc(100vh-5rem)] section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-y-auto">
       {/* Contenedor Premium con Borde */}
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="section-container-premium p-8 md:p-12">

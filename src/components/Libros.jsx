@@ -4,7 +4,7 @@ import { books } from '../data/books'
 
 const Libros = () => {
   return (
-    <section id="libros" className="section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative">
+    <section id="libros" className="min-h-[calc(100vh-5rem)] section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-y-auto">
       {/* Verde claro del logo debajo */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/40 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto">

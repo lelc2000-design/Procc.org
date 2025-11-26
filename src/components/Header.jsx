@@ -2,9 +2,19 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenu, HiX } from 'react-icons/hi'
 
-const Header = ({ isScrolled }) => {
+const Header = ({ isScrolled, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
+
+  const handleNavigation = (href) => {
+    if (href && href.startsWith('#')) {
+      const section = href.replace('#', '')
+      setActiveSection(section)
+      window.location.hash = section
+      window.scrollTo(0, 0)
+      setIsMenuOpen(false)
+    }
+  }
 
   const menuItems = [
     {
@@ -82,7 +92,11 @@ const Header = ({ isScrolled }) => {
           {/* Logo con ESPACIO MÁXIMO */}
           <motion.a
             href="#"
-            className="flex items-center pr-24 md:pr-32 lg:pr-40 xl:pr-48 2xl:pr-56"
+            onClick={(e) => {
+              e.preventDefault()
+              handleNavigation('#inicio')
+            }}
+            className="flex items-center pr-24 md:pr-32 lg:pr-40 xl:pr-48 2xl:pr-56 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -112,7 +126,11 @@ const Header = ({ isScrolled }) => {
               >
                 <a
                   href={item.href || '#'}
-                  className="relative px-4 py-2.5 rounded-lg font-bold text-xs xl:text-sm uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 group-hover:scale-105"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavigation(item.href || '#')
+                  }}
+                  className="relative px-4 py-2.5 rounded-lg font-bold text-xs xl:text-sm uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 group-hover:scale-105 cursor-pointer"
                   style={{
                     background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)',
                     border: '2px solid rgba(107, 70, 193, 0.15)',
@@ -158,7 +176,11 @@ const Header = ({ isScrolled }) => {
                           <a
                             key={subIdx}
                             href={sub.href}
-                            className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              handleNavigation(sub.href)
+                            }}
+                            className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary cursor-pointer"
                           >
                             {sub.name}
                           </a>
@@ -193,8 +215,12 @@ const Header = ({ isScrolled }) => {
                 <div key={idx} className="py-2">
                   <a
                     href={item.href || '#'}
-                    className="block py-2 text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase"
-                    onClick={() => !item.submenu && setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleNavigation(item.href || '#')
+                      if (!item.submenu) setIsMenuOpen(false)
+                    }}
+                    className="block py-2 text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase cursor-pointer"
                   >
                     {item.name}
                   </a>
@@ -204,8 +230,12 @@ const Header = ({ isScrolled }) => {
                         <a
                           key={subIdx}
                           href={sub.href}
-                          className="block py-1 text-gray-600 hover:text-procc-primary text-sm"
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            handleNavigation(sub.href)
+                            setIsMenuOpen(false)
+                          }}
+                          className="block py-1 text-gray-600 hover:text-procc-primary text-sm cursor-pointer"
                         >
                           {sub.name}
                         </a>
