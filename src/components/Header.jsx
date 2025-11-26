@@ -48,9 +48,9 @@ const Header = ({ isScrolled }) => {
         { name: 'Fotografías', href: '#fotografias' },
       ]
     },
-            { name: 'PUBLICACIONES', href: '#publicaciones' },
-            { name: 'BLOG', href: '#blog' },
-            { name: 'CALENDARIO', href: '#calendario' },
+    { name: 'PUBLICACIONES', href: '#publicaciones' },
+    { name: 'BLOG', href: '#blog' },
+    { name: 'CALENDARIO', href: '#calendario' },
     {
       name: 'COMUNIDAD',
       submenu: [
@@ -70,16 +70,19 @@ const Header = ({ isScrolled }) => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-lg shadow-lg'
-          : 'bg-white/80 backdrop-blur-sm'
+          ? 'bg-white/98 backdrop-blur-lg shadow-xl border-b border-gray-200'
+          : 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+      {/* Línea superior teal/verde */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-procc-green via-procc-primary to-procc-green"></div>
+      
+      <nav className="max-w-7xl mx-auto px-8 md:px-12 lg:px-20 xl:px-24">
         <div className="flex items-center justify-between h-20">
-          {/* Logo con MUCHO más espacio */}
+          {/* Logo con ESPACIO MÁXIMO */}
           <motion.a
             href="#"
-            className="flex items-center pr-16 md:pr-20 lg:pr-24 xl:pr-32"
+            className="flex items-center pr-24 md:pr-32 lg:pr-40 xl:pr-48 2xl:pr-56"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -98,8 +101,8 @@ const Header = ({ isScrolled }) => {
             </div>
           </motion.a>
 
-          {/* Desktop Menu con más espacio */}
-          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8 flex-1 justify-end">
+          {/* Desktop Menu ULTRA PREMIUM */}
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-1 justify-end">
             {menuItems.map((item, idx) => (
               <div
                 key={idx}
@@ -109,10 +112,33 @@ const Header = ({ isScrolled }) => {
               >
                 <a
                   href={item.href || '#'}
-                  className="text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase tracking-wide transition-colors duration-200 flex items-center space-x-1"
+                  className="relative px-4 py-2.5 rounded-lg font-bold text-xs xl:text-sm uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 group-hover:scale-105"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)',
+                    border: '2px solid rgba(107, 70, 193, 0.15)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)',
+                    color: '#4B5563',
+                    textShadow: '0 1px 2px rgba(255,255,255,0.8)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(107, 70, 193, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%)';
+                    e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.3)';
+                    e.currentTarget.style.color = '#FFFFFF';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(107, 70, 193, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)';
+                    e.currentTarget.style.textShadow = '0 1px 2px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)';
+                    e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.15)';
+                    e.currentTarget.style.color = '#4B5563';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)';
+                    e.currentTarget.style.textShadow = '0 1px 2px rgba(255,255,255,0.8)';
+                  }}
                 >
                   <span>{item.name}</span>
-                  {item.submenu && <span className="text-xs">▼</span>}
+                  {item.submenu && (
+                    <span className="text-[10px] xl:text-xs opacity-70">▼</span>
+                  )}
                 </a>
 
                 {item.submenu && (
@@ -122,13 +148,17 @@ const Header = ({ isScrolled }) => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-premium p-4 border border-gray-100"
+                        className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl p-4 border-2 border-procc-primary/20"
+                        style={{
+                          boxShadow: '0 20px 40px rgba(107, 70, 193, 0.15), 0 0 0 1px rgba(107, 70, 193, 0.1)',
+                          backdropFilter: 'blur(10px)'
+                        }}
                       >
                         {item.submenu.map((sub, subIdx) => (
                           <a
                             key={subIdx}
                             href={sub.href}
-                            className="block py-2 px-3 text-gray-700 hover:text-procc-primary hover:bg-procc-light rounded-lg transition-colors duration-200 text-sm"
+                            className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary"
                           >
                             {sub.name}
                           </a>
@@ -193,4 +223,3 @@ const Header = ({ isScrolled }) => {
 }
 
 export default Header
-
