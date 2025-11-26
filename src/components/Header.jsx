@@ -8,7 +8,16 @@ const Header = ({ isScrolled, setActiveSection }) => {
 
   const handleNavigation = (href) => {
     if (href && href.startsWith('#')) {
-      const section = href.replace('#', '')
+      // Si tiene parámetro ?tab=, extraerlo
+      const [section, query] = href.replace('#', '').split('?')
+      const params = new URLSearchParams(query || '')
+      const tab = params.get('tab')
+      
+      if (tab) {
+        // Guardar el tab en sessionStorage para que el componente lo lea
+        sessionStorage.setItem(`${section}_tab`, tab)
+      }
+      
       setActiveSection(section)
       window.location.hash = section
       window.scrollTo(0, 0)
@@ -16,42 +25,55 @@ const Header = ({ isScrolled, setActiveSection }) => {
     }
   }
 
-  // Menú simplificado - solo submenús directamente, sin items principales
   const menuItems = [
-    // Submenús de SOMOS - Directos sin item principal
-    { name: 'PROYECTO PROCC', href: '#proyecto' },
-    { name: 'METODOLOGÍA PROCC', href: '#metodologia' },
-    { name: 'RED PROCC', href: '#red' },
-    { name: 'EQUIPO PROCC', href: '#equipo' },
-    { name: 'INSTITUCIONES', href: '#instituciones' },
-    // Submenús de ESTAMOS - Directos sin item principal
-    { name: 'ANDALUCÍA', href: '#andalucia' },
-    { name: 'ARAGÓN', href: '#aragon' },
-    { name: 'GALICIA', href: '#galicia' },
-    { name: 'MADRID', href: '#madrid' },
-    { name: 'PAÍS VASCO', href: '#pais-vasco' },
-    { name: 'ARGENTINA', href: '#argentina' },
-    // Submenús de HACEMOS - Directos sin item principal
-    { name: 'FORMACIÓN', href: '#formacion' },
-    { name: 'INTERVENCIÓN', href: '#intervencion' },
-    { name: 'ATENCIÓN', href: '#atencion' },
-    { name: 'SUPERVISIÓN', href: '#supervision' },
-    { name: 'ASESORÍA', href: '#asesoria' },
-    // DECIMOS - Mantener con submenú como estaba
+    {
+      name: 'SOMOS',
+      href: '#somos',
+      submenu: [
+        { name: 'Proyecto ProCC', href: '#somos', tab: 'proyecto' },
+        { name: 'Metodología ProCC', href: '#somos', tab: 'metodologia' },
+        { name: 'Red ProCC', href: '#somos', tab: 'red' },
+        { name: 'Equipo ProCC', href: '#somos', tab: 'equipo' },
+        { name: 'Instituciones', href: '#somos', tab: 'instituciones' },
+      ]
+    },
+    {
+      name: 'ESTAMOS',
+      href: '#estamos',
+      submenu: [
+        { name: 'Andalucía', href: '#estamos', tab: 'andalucia' },
+        { name: 'Aragón', href: '#estamos', tab: 'aragon' },
+        { name: 'Galicia', href: '#estamos', tab: 'galicia' },
+        { name: 'Madrid', href: '#estamos', tab: 'madrid' },
+        { name: 'País Vasco', href: '#estamos', tab: 'pais-vasco' },
+        { name: 'Argentina', href: '#estamos', tab: 'argentina' },
+      ]
+    },
+    {
+      name: 'HACEMOS',
+      href: '#hacemos',
+      submenu: [
+        { name: 'Formación de Profesionales', href: '#hacemos', tab: 'formacion' },
+        { name: 'Intervención Comunitaria', href: '#hacemos', tab: 'intervencion' },
+        { name: 'Atención Psicológica', href: '#hacemos', tab: 'atencion' },
+        { name: 'Supervisión Profesional', href: '#hacemos', tab: 'supervision' },
+        { name: 'Asesoría Institucional', href: '#hacemos', tab: 'asesoria' },
+      ]
+    },
     {
       name: 'DECIMOS',
+      href: '#decimos',
       submenu: [
-        { name: 'Publicaciones', href: '#publicaciones' },
-        { name: 'Libros', href: '#libros' },
-        { name: 'Videos', href: '#videos' },
-        { name: 'Podcasts', href: '#podcasts' },
-        { name: 'Fotografías', href: '#fotografias' },
+        { name: 'Publicaciones', href: '#decimos', tab: 'publicaciones' },
+        { name: 'Libros', href: '#decimos', tab: 'libros' },
+        { name: 'Videos', href: '#decimos', tab: 'videos' },
+        { name: 'Podcasts', href: '#decimos', tab: 'podcasts' },
+        { name: 'Fotografías', href: '#decimos', tab: 'fotografias' },
       ]
     },
     { name: 'PUBLICACIONES', href: '#publicaciones' },
     { name: 'BLOG', href: '#blog' },
     { name: 'CALENDARIO', href: '#calendario' },
-    // COMUNIDAD - Mantener con submenú como estaba
     {
       name: 'COMUNIDAD',
       submenu: [
@@ -169,7 +191,12 @@ const Header = ({ isScrolled, setActiveSection }) => {
                             href={sub.href}
                             onClick={(e) => {
                               e.preventDefault()
-                              handleNavigation(sub.href)
+                              // Si tiene tab, pasar el tab en el hash
+                              if (sub.tab) {
+                                handleNavigation(`${sub.href}?tab=${sub.tab}`)
+                              } else {
+                                handleNavigation(sub.href)
+                              }
                             }}
                             className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary cursor-pointer"
                           >

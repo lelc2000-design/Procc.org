@@ -119,17 +119,7 @@ function App() {
       case 'inicio':
         return <Hero />
       case 'somos':
-        return <Somos activeSubsection={null} />
-      case 'proyecto':
-        return <Somos activeSubsection="proyecto" />
-      case 'metodologia':
-        return <Somos activeSubsection="metodologia" />
-      case 'red':
-        return <Somos activeSubsection="red" />
-      case 'equipo':
-        return <Somos activeSubsection="equipo" />
-      case 'instituciones':
-        return <Somos activeSubsection="instituciones" />
+        return <Somos />
       case 'estamos':
       case 'andalucia':
       case 'aragon':
