@@ -4,6 +4,7 @@ import { HiMenu, HiX } from 'react-icons/hi'
 
 const Header = ({ isScrolled, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState(null)
 
   const handleNavigation = (href) => {
     if (href && href.startsWith('#')) {
@@ -17,34 +18,49 @@ const Header = ({ isScrolled, setActiveSection }) => {
 
   // Menú simplificado - solo submenús directamente, sin items principales
   const menuItems = [
-    // Submenús de SOMOS
+    // Submenús de SOMOS - Directos sin item principal
     { name: 'PROYECTO PROCC', href: '#proyecto' },
     { name: 'METODOLOGÍA PROCC', href: '#metodologia' },
     { name: 'RED PROCC', href: '#red' },
     { name: 'EQUIPO PROCC', href: '#equipo' },
     { name: 'INSTITUCIONES', href: '#instituciones' },
-    // Submenús de ESTAMOS
+    // Submenús de ESTAMOS - Directos sin item principal
     { name: 'ANDALUCÍA', href: '#andalucia' },
     { name: 'ARAGÓN', href: '#aragon' },
     { name: 'GALICIA', href: '#galicia' },
     { name: 'MADRID', href: '#madrid' },
     { name: 'PAÍS VASCO', href: '#pais-vasco' },
     { name: 'ARGENTINA', href: '#argentina' },
-    // Submenús de HACEMOS
+    // Submenús de HACEMOS - Directos sin item principal
     { name: 'FORMACIÓN', href: '#formacion' },
     { name: 'INTERVENCIÓN', href: '#intervencion' },
     { name: 'ATENCIÓN', href: '#atencion' },
     { name: 'SUPERVISIÓN', href: '#supervision' },
     { name: 'ASESORÍA', href: '#asesoria' },
-    // Submenús de DECIMOS
+    // DECIMOS - Mantener con submenú como estaba
+    {
+      name: 'DECIMOS',
+      submenu: [
+        { name: 'Publicaciones', href: '#publicaciones' },
+        { name: 'Libros', href: '#libros' },
+        { name: 'Videos', href: '#videos' },
+        { name: 'Podcasts', href: '#podcasts' },
+        { name: 'Fotografías', href: '#fotografias' },
+      ]
+    },
     { name: 'PUBLICACIONES', href: '#publicaciones' },
-    { name: 'LIBROS', href: '#libros' },
-    { name: 'VIDEOS', href: '#videos' },
-    { name: 'PODCASTS', href: '#podcasts' },
-    { name: 'FOTOGRAFÍAS', href: '#fotografias' },
-    // Items directos
     { name: 'BLOG', href: '#blog' },
     { name: 'CALENDARIO', href: '#calendario' },
+    // COMUNIDAD - Mantener con submenú como estaba
+    {
+      name: 'COMUNIDAD',
+      submenu: [
+        { name: 'Redes Sociales', href: '#comunidad' },
+        { name: 'Telegram', href: '#comunidad' },
+        { name: 'X (Twitter)', href: '#comunidad' },
+        { name: 'TikTok', href: '#comunidad' },
+      ]
+    },
     { name: 'SEGURIDAD', href: '#seguridad' },
     { name: 'HABLEMOS', href: '#contacto' },
   ]
@@ -90,41 +106,81 @@ const Header = ({ isScrolled, setActiveSection }) => {
             </div>
           </motion.a>
 
-          {/* Desktop Menu ULTRA PREMIUM - Solo items directos, sin submenús */}
+          {/* Desktop Menu ULTRA PREMIUM */}
           <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-1 justify-end">
             {menuItems.map((item, idx) => (
-              <a
+              <div
                 key={idx}
-                href={item.href || '#'}
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleNavigation(item.href || '#')
-                }}
-                className="relative px-4 py-2.5 rounded-lg font-bold text-xs xl:text-sm uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 hover:scale-105 cursor-pointer"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)',
-                  border: '2px solid rgba(107, 70, 193, 0.15)',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)',
-                  color: '#4B5563',
-                  textShadow: '0 1px 2px rgba(255,255,255,0.8)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(107, 70, 193, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%)';
-                  e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.3)';
-                  e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(107, 70, 193, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)';
-                  e.currentTarget.style.textShadow = '0 1px 2px rgba(0,0,0,0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)';
-                  e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.15)';
-                  e.currentTarget.style.color = '#4B5563';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)';
-                  e.currentTarget.style.textShadow = '0 1px 2px rgba(255,255,255,0.8)';
-                }}
+                className="relative group"
+                onMouseEnter={() => setActiveDropdown(idx)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                <span>{item.name}</span>
-              </a>
+                <a
+                  href={item.href || '#'}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavigation(item.href || '#')
+                  }}
+                  className="relative px-4 py-2.5 rounded-lg font-bold text-xs xl:text-sm uppercase tracking-wider transition-all duration-300 flex items-center space-x-1.5 group-hover:scale-105 cursor-pointer"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)',
+                    border: '2px solid rgba(107, 70, 193, 0.15)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)',
+                    color: '#4B5563',
+                    textShadow: '0 1px 2px rgba(255,255,255,0.8)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(107, 70, 193, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%)';
+                    e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.3)';
+                    e.currentTarget.style.color = '#FFFFFF';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(107, 70, 193, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)';
+                    e.currentTarget.style.textShadow = '0 1px 2px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)';
+                    e.currentTarget.style.borderColor = 'rgba(107, 70, 193, 0.15)';
+                    e.currentTarget.style.color = '#4B5563';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)';
+                    e.currentTarget.style.textShadow = '0 1px 2px rgba(255,255,255,0.8)';
+                  }}
+                >
+                  <span>{item.name}</span>
+                  {item.submenu && (
+                    <span className="text-[10px] xl:text-xs opacity-70">▼</span>
+                  )}
+                </a>
+
+                {item.submenu && (
+                  <AnimatePresence>
+                    {activeDropdown === idx && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl p-4 border-2 border-procc-primary/20"
+                        style={{
+                          boxShadow: '0 20px 40px rgba(107, 70, 193, 0.15), 0 0 0 1px rgba(107, 70, 193, 0.1)',
+                          backdropFilter: 'blur(10px)'
+                        }}
+                      >
+                        {item.submenu.map((sub, subIdx) => (
+                          <a
+                            key={subIdx}
+                            href={sub.href}
+                            onClick={(e) => {
+                              e.preventDefault()
+                              handleNavigation(sub.href)
+                            }}
+                            className="block py-3 px-4 text-gray-700 hover:text-procc-primary hover:bg-gradient-to-r hover:from-procc-light hover:to-transparent rounded-xl transition-all duration-200 text-sm font-medium border-l-2 border-transparent hover:border-procc-primary cursor-pointer"
+                          >
+                            {sub.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </div>
             ))}
           </div>
 
@@ -137,28 +193,47 @@ const Header = ({ isScrolled, setActiveSection }) => {
           </button>
         </div>
 
-        {/* Mobile Menu - Simplificado */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-gray-200 mt-4 pb-4 max-h-[80vh] overflow-y-auto"
+              className="lg:hidden border-t border-gray-200 mt-4 pb-4"
             >
               {menuItems.map((item, idx) => (
-                <a
-                  key={idx}
-                  href={item.href || '#'}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavigation(item.href || '#')
-                    setIsMenuOpen(false)
-                  }}
-                  className="block py-2 text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase cursor-pointer"
-                >
-                  {item.name}
-                </a>
+                <div key={idx} className="py-2">
+                  <a
+                    href={item.href || '#'}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleNavigation(item.href || '#')
+                      if (!item.submenu) setIsMenuOpen(false)
+                    }}
+                    className="block py-2 text-gray-700 hover:text-procc-primary font-semibold text-sm uppercase cursor-pointer"
+                  >
+                    {item.name}
+                  </a>
+                  {item.submenu && (
+                    <div className="pl-4 mt-2 space-y-1">
+                      {item.submenu.map((sub, subIdx) => (
+                        <a
+                          key={subIdx}
+                          href={sub.href}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            handleNavigation(sub.href)
+                            setIsMenuOpen(false)
+                          }}
+                          className="block py-1 text-gray-600 hover:text-procc-primary text-sm cursor-pointer"
+                        >
+                          {sub.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </motion.div>
           )}
