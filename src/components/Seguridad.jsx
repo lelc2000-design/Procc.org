@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { Shield, Lock, Eye, FileText, CheckCircle, AlertCircle } from 'react-icons/md'
+import { MdSecurity, MdLock, MdVisibility, MdDescription, MdCheckCircle, MdError } from 'react-icons/md'
 
 const Seguridad = () => {
   const securityFeatures = [
     {
-      icon: <Shield className="text-5xl text-procc-primary" />,
+      icon: <MdSecurity className="text-5xl text-procc-primary" />,
       title: 'Protección de Datos',
       description: 'Cumplimos con el Reglamento General de Protección de Datos (RGPD) y garantizamos la máxima seguridad en el tratamiento de información personal.',
       details: [
@@ -15,7 +15,7 @@ const Seguridad = () => {
       ]
     },
     {
-      icon: <Lock className="text-5xl text-procc-primary" />,
+      icon: <MdLock className="text-5xl text-procc-primary" />,
       title: 'Privacidad',
       description: 'Respetamos tu privacidad y protegemos tu información personal. Nunca compartimos tus datos con terceros sin tu consentimiento explícito.',
       details: [
@@ -26,7 +26,7 @@ const Seguridad = () => {
       ]
     },
     {
-      icon: <Eye className="text-5xl text-procc-primary" />,
+      icon: <MdVisibility className="text-5xl text-procc-primary" />,
       title: 'Transparencia',
       description: 'Mantenemos total transparencia sobre cómo utilizamos la información y qué medidas de seguridad implementamos.',
       details: [
@@ -37,7 +37,7 @@ const Seguridad = () => {
       ]
     },
     {
-      icon: <FileText className="text-5xl text-procc-primary" />,
+      icon: <MdDescription className="text-5xl text-procc-primary" />,
       title: 'Cumplimiento Legal',
       description: 'Cumplimos con todas las normativas legales aplicables en materia de protección de datos y privacidad.',
       details: [
@@ -118,7 +118,7 @@ const Seguridad = () => {
               <ul className="space-y-3">
                 {feature.details.map((detail, detailIdx) => (
                   <li key={detailIdx} className="flex items-start space-x-3">
-                    <CheckCircle className="text-procc-primary mt-1 flex-shrink-0" />
+                    <MdCheckCircle className="text-procc-primary mt-1 flex-shrink-0" />
                     <span className="text-gray-700">{detail}</span>
                   </li>
                 ))}
@@ -159,7 +159,7 @@ const Seguridad = () => {
           viewport={{ once: true }}
         >
           <div className="text-center">
-            <Shield className="text-6xl mx-auto mb-6" />
+            <MdSecurity className="text-6xl mx-auto mb-6" />
             <h3 className="text-3xl font-bold mb-4">
               Política de Privacidad
             </h3>
@@ -196,7 +196,7 @@ const Seguridad = () => {
           viewport={{ once: true }}
         >
           <div className="flex items-start space-x-4">
-            <AlertCircle className="text-procc-primary text-3xl flex-shrink-0 mt-1" />
+            <MdError className="text-procc-primary text-3xl flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-bold text-gray-900 mb-2">¿Tienes preguntas sobre seguridad?</h4>
               <p className="text-gray-700 mb-4">

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { LocationOn, Phone, Email, Language } from 'react-icons/md'
+import { MdLocationOn, MdPhone, MdEmail, MdLanguage } from 'react-icons/md'
 
 const Estamos = () => {
   const locations = [
@@ -85,7 +85,7 @@ const Estamos = () => {
             >
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 rounded-full bg-procc-primary/10 flex items-center justify-center mr-4">
-                  <LocationOn className="text-procc-primary text-2xl" />
+                  <MdLocationOn className="text-procc-primary text-2xl" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">
                   {location.name}
@@ -100,13 +100,13 @@ const Estamos = () => {
                     </h4>
                     {region.contact && (
                       <div className="flex items-center text-sm text-gray-600 mb-1">
-                        <Email className="mr-2 text-procc-primary" />
+                        <MdEmail className="mr-2 text-procc-primary" />
                         <span>{region.contact}</span>
                       </div>
                     )}
                     {region.phone && (
                       <div className="flex items-center text-sm text-gray-600">
-                        <Phone className="mr-2 text-procc-primary" />
+                        <MdPhone className="mr-2 text-procc-primary" />
                         <span>{region.phone}</span>
                       </div>
                     )}
@@ -138,7 +138,7 @@ const Estamos = () => {
           </h3>
           <div className="h-96 bg-procc-light rounded-xl flex items-center justify-center">
             <div className="text-center">
-              <LocationOn className="text-procc-primary text-6xl mx-auto mb-4" />
+              <MdLocationOn className="text-procc-primary text-6xl mx-auto mb-4" />
               <p className="text-gray-600">
                 Mapa interactivo con todas las ubicaciones ProCC
               </p>

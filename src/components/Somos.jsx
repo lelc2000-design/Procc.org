@@ -1,39 +1,39 @@
 import { motion } from 'framer-motion'
-import { Users, BookOpen, Network, Award, Building2 } from 'react-icons/md'
+import { MdPeople, MdMenuBook, MdHub, MdEmojiEvents, MdBusiness } from 'react-icons/md'
 
 const Somos = () => {
   const sections = [
     {
       id: 'proyecto',
-      icon: <Users className="text-5xl text-procc-primary" />,
+      icon: <MdPeople className="text-5xl text-procc-primary" />,
       title: 'Proyecto ProCC',
       description: 'Trabajamos por una vida cotidiana más humana, más solidaria y más saludable. Favorecemos espacios de encuentro y reflexión acerca de las situaciones y contradicciones cotidianas que nos generan malestar para analizar las causas y buscar alternativas colectivas.',
       color: 'from-blue-500 to-blue-600'
     },
     {
       id: 'metodologia',
-      icon: <BookOpen className="text-5xl text-procc-primary" />,
+      icon: <MdMenuBook className="text-5xl text-procc-primary" />,
       title: 'Metodología ProCC',
       description: 'Usamos la Metodología de los Procesos Correctores Comunitarios (ProCC), una concepción teórico-metodológica fruto de muchos años de praxis. Tiene como objeto de estudio y trabajo los malestares de la vida cotidiana; promueve una mirada crítica del modo de vida y favorece el desarrollo del protagonismo personal-social y la acción participativa de la población en la resolución de sus contradicciones.',
       color: 'from-purple-500 to-purple-600'
     },
     {
       id: 'red',
-      icon: <Network className="text-5xl text-procc-primary" />,
+      icon: <MdHub className="text-5xl text-procc-primary" />,
       title: 'Red ProCC',
       description: 'Desarrollamos la acción profesional de manera colectiva. La Red ProCC articula el conjunto de personas, organizaciones e instituciones que coparticipan en alguna forma en los desarrollos nacionales e internacionales del Proyecto.',
       color: 'from-green-500 to-green-600'
     },
     {
       id: 'equipo',
-      icon: <Award className="text-5xl text-procc-primary" />,
+      icon: <MdEmojiEvents className="text-5xl text-procc-primary" />,
       title: 'Equipo ProCC',
       description: 'El equipo del Proyecto ProCC está conformado por muchas personas que participan de diferentes formas. Presentamos los miembros del equipo docente y las responsables de la coordinación de las 5 Áreas del Proyecto (Investigación, Acción, Difusión, Relación y Financiación).',
       color: 'from-orange-500 to-orange-600'
     },
     {
       id: 'instituciones',
-      icon: <Building2 className="text-5xl text-procc-primary" />,
+      icon: <MdBusiness className="text-5xl text-procc-primary" />,
       title: 'Instituciones',
       description: 'Colaboramos con diversas instituciones públicas y privadas para desarrollar proyectos de intervención comunitaria y formación profesional en diferentes ámbitos.',
       color: 'from-red-500 to-red-600'

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'react-icons/md'
+import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 
 const Footer = () => {
   const footerSections = [
@@ -66,15 +67,15 @@ const Footer = () => {
               {/* Contacto */}
               <div className="space-y-3">
                 <div className="flex items-center text-gray-400">
-                  <Mail className="mr-3 text-procc-accent" />
+                  <MdEmail className="mr-3 text-procc-accent" />
                   <span>cml@procc.org</span>
                 </div>
                 <div className="flex items-center text-gray-400">
-                  <Phone className="mr-3 text-procc-accent" />
+                  <MdPhone className="mr-3 text-procc-accent" />
                   <span>610 016 109</span>
                 </div>
                 <div className="flex items-center text-gray-400">
-                  <MapPin className="mr-3 text-procc-accent" />
+                  <MdLocationOn className="mr-3 text-procc-accent" />
                   <span>Centro Marie Langer, Madrid</span>
                 </div>
               </div>
@@ -82,10 +83,10 @@ const Footer = () => {
               {/* Redes Sociales */}
               <div className="flex space-x-4 mt-6">
                 {[
-                  { icon: Facebook, href: '#' },
-                  { icon: Twitter, href: '#' },
-                  { icon: Instagram, href: '#' },
-                  { icon: Linkedin, href: '#' },
+                  { icon: FaFacebook, href: '#' },
+                  { icon: FaTwitter, href: '#' },
+                  { icon: FaInstagram, href: '#' },
+                  { icon: FaLinkedin, href: '#' },
                 ].map((social, idx) => (
                   <motion.a
                     key={idx}

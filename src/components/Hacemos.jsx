@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
-import { School, Users, Heart, Eye, Building } from 'react-icons/md'
+import { MdSchool, MdPeople, MdFavorite, MdVisibility, MdBusiness } from 'react-icons/md'
 
 const Hacemos = () => {
   const activities = [
     {
       id: 'formacion',
-      icon: <School className="text-5xl text-procc-primary" />,
+      icon: <MdSchool className="text-5xl text-procc-primary" />,
       title: 'Formación de Profesionales',
       description: 'Cursos y talleres especializados en Metodología ProCC para profesionales de la salud, educación y trabajo social.',
       details: [
@@ -19,7 +19,7 @@ const Hacemos = () => {
     },
     {
       id: 'intervencion',
-      icon: <Users className="text-5xl text-procc-primary" />,
+      icon: <MdPeople className="text-5xl text-procc-primary" />,
       title: 'Intervención Comunitaria',
       description: 'Programas de intervención en diferentes ámbitos: familia, jóvenes, género, mayores, comunidad educativa y participación.',
       details: [
@@ -33,14 +33,14 @@ const Hacemos = () => {
     },
     {
       id: 'atencion',
-      icon: <Heart className="text-5xl text-procc-primary" />,
+      icon: <MdFavorite className="text-5xl text-procc-primary" />,
       title: 'Atención Psicológica',
       description: 'Servicios de atención psicológica individual y grupal basados en la Metodología ProCC.',
       color: 'bg-red-50'
     },
     {
       id: 'supervision',
-      icon: <Eye className="text-5xl text-procc-primary" />,
+      icon: <MdVisibility className="text-5xl text-procc-primary" />,
       title: 'Supervisión Profesional',
       description: 'Espacios de supervisión para profesionales que implementan la Metodología ProCC en sus contextos de trabajo.',
       details: [
@@ -52,7 +52,7 @@ const Hacemos = () => {
     },
     {
       id: 'asesoria',
-      icon: <Building className="text-5xl text-procc-primary" />,
+      icon: <MdBusiness className="text-5xl text-procc-primary" />,
       title: 'Asesoría Institucional',
       description: 'Asesoramiento a instituciones públicas y privadas para la implementación de programas basados en la Metodología ProCC.',
       color: 'bg-orange-50'
@@ -131,7 +131,7 @@ const Hacemos = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center">
-            <School className="text-6xl mx-auto mb-6" />
+            <MdSchool className="text-6xl mx-auto mb-6" />
             <h3 className="text-3xl font-bold mb-4">
               Curso Metodología ProCC 2025-2026
             </h3>

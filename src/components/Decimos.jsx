@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
-import { Book, VideoLibrary, Mic, Image, Newspaper } from 'react-icons/md'
+import { MdMenuBook, MdVideoLibrary, MdMic, MdImage, MdNewspaper } from 'react-icons/md'
 
 const Decimos = () => {
   const publications = [
     {
       id: 'publicaciones',
-      icon: <Newspaper className="text-5xl text-procc-primary" />,
+      icon: <MdNewspaper className="text-5xl text-procc-primary" />,
       title: 'Publicaciones',
       description: 'Artículos y documentos sobre adolescencia, género, ámbito escolar, familiar, sanitario y construcción social de la subjetividad.',
       categories: [
@@ -21,21 +21,21 @@ const Decimos = () => {
     },
     {
       id: 'libros',
-      icon: <Book className="text-5xl text-procc-primary" />,
+      icon: <MdMenuBook className="text-5xl text-procc-primary" />,
       title: 'Libros',
       description: 'Publicaciones editoriales sobre la Metodología ProCC y sus aplicaciones.',
       color: 'bg-blue-50'
     },
     {
       id: 'videos',
-      icon: <VideoLibrary className="text-5xl text-procc-primary" />,
+      icon: <MdVideoLibrary className="text-5xl text-procc-primary" />,
       title: 'Videos',
       description: 'Contenido audiovisual educativo y formativo sobre la Metodología ProCC.',
       color: 'bg-red-50'
     },
     {
       id: 'podcasts',
-      icon: <Mic className="text-5xl text-procc-primary" />,
+      icon: <MdMic className="text-5xl text-procc-primary" />,
       title: 'Podcasts',
       description: 'Serie de podcasts como "Ayudando a crecer" en Alto Gredos sobre temas de crianza y desarrollo comunitario.',
       featured: 'Podcast "Ayudando a crecer" en Alto Gredos',
@@ -43,7 +43,7 @@ const Decimos = () => {
     },
     {
       id: 'fotografias',
-      icon: <Image className="text-5xl text-procc-primary" />,
+      icon: <MdImage className="text-5xl text-procc-primary" />,
       title: 'Fotografías',
       description: 'Galería de imágenes de actividades, formaciones y eventos ProCC.',
       color: 'bg-green-50'

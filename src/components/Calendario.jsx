@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Calendar as CalendarIcon, 
-  MapPin, 
-  Video, 
-  Users, 
-  Clock,
-  Plus,
-  CheckCircle
+  MdChevronLeft, 
+  MdChevronRight, 
+  MdCalendarToday as CalendarIcon, 
+  MdLocationOn, 
+  MdVideoLibrary, 
+  MdPeople, 
+  MdAccessTime,
+  MdAdd,
+  MdCheckCircle
 } from 'react-icons/md'
 import { HiX } from 'react-icons/hi'
 
@@ -264,7 +264,7 @@ const Calendario = () => {
                 }}
                 className="p-2 rounded-lg hover:bg-procc-light transition-colors"
               >
-                <ChevronLeft className="text-2xl text-procc-primary" />
+                <MdChevronLeft className="text-2xl text-procc-primary" />
               </button>
               
               <div className="text-center min-w-[200px]">
@@ -286,7 +286,7 @@ const Calendario = () => {
                 }}
                 className="p-2 rounded-lg hover:bg-procc-light transition-colors"
               >
-                <ChevronRight className="text-2xl text-procc-primary" />
+                <MdChevronRight className="text-2xl text-procc-primary" />
               </button>
               
               <button
@@ -319,7 +319,7 @@ const Calendario = () => {
                       : 'text-gray-700 hover:bg-white'
                   }`}
                 >
-                  <Video className="inline mr-1" />
+                  <MdVideoLibrary className="inline mr-1" />
                   Online
                 </button>
                 <button
@@ -330,7 +330,7 @@ const Calendario = () => {
                       : 'text-gray-700 hover:bg-white'
                   }`}
                 >
-                  <MapPin className="inline mr-1" />
+                  <MdLocationOn className="inline mr-1" />
                   Presencial
                 </button>
               </div>
@@ -376,7 +376,7 @@ const Calendario = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Plus />
+                <MdAdd />
                 <span>Nuevo Evento</span>
               </motion.button>
             </div>
@@ -627,15 +627,15 @@ const Calendario = () => {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center space-x-2">
-                      <Clock />
+                      <MdAccessTime />
                       <span>{event.time} - {event.endTime}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      {event.type === 'online' ? <Video /> : <MapPin />}
+                      {event.type === 'online' ? <MdVideoLibrary /> : <MdLocationOn />}
                       <span>{event.location}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Users />
+                      <MdPeople />
                       <span>{event.enrolled}/{event.capacity} participantes</span>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -712,7 +712,7 @@ const Calendario = () => {
                   </div>
                   
                   <div className="flex items-center space-x-3">
-                    <Clock className="text-procc-primary text-xl" />
+                    <MdAccessTime className="text-procc-primary text-xl" />
                     <div>
                       <div className="font-semibold text-gray-900">
                         {selectedEvent.time} - {selectedEvent.endTime}
@@ -724,7 +724,7 @@ const Calendario = () => {
                     {selectedEvent.type === 'online' ? (
                       <Video className="text-procc-primary text-xl" />
                     ) : (
-                      <MapPin className="text-procc-primary text-xl" />
+                      <MdLocationOn className="text-procc-primary text-xl" />
                     )}
                     <div>
                       <div className="font-semibold text-gray-900">
@@ -734,7 +734,7 @@ const Calendario = () => {
                   </div>
                   
                   <div className="flex items-center space-x-3">
-                    <Users className="text-procc-primary text-xl" />
+                    <MdPeople className="text-procc-primary text-xl" />
                     <div>
                       <div className="font-semibold text-gray-900">
                         {selectedEvent.enrolled} / {selectedEvent.capacity} participantes
@@ -769,7 +769,7 @@ const Calendario = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <CheckCircle />
+                    <MdCheckCircle />
                     <span>Inscribirse</span>
                   </motion.button>
                   <motion.button

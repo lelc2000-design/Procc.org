@@ -1,34 +1,34 @@
 import { motion } from 'framer-motion'
-import { Calculator, Search, Download, Calendar, Mail } from 'react-icons/md'
+import { MdCalculate, MdSearch, MdDownload, MdCalendarToday, MdEmail } from 'react-icons/md'
 
 const Herramientas = () => {
   const tools = [
     {
-      icon: <Calculator className="text-4xl" />,
+      icon: <MdCalculate className="text-4xl" />,
       title: 'Calculadora de Recursos',
       description: 'Herramienta para calcular recursos necesarios para intervenciones comunitarias',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      icon: <Search className="text-4xl" />,
+      icon: <MdSearch className="text-4xl" />,
       title: 'Buscador de Publicaciones',
       description: 'Busca entre todas nuestras publicaciones, artículos y recursos',
       color: 'from-green-500 to-green-600'
     },
     {
-      icon: <Download className="text-4xl" />,
+      icon: <MdDownload className="text-4xl" />,
       title: 'Descarga de Materiales',
       description: 'Accede a materiales descargables, guías y recursos educativos',
       color: 'from-purple-500 to-purple-600'
     },
     {
-      icon: <Calendar className="text-4xl" />,
+      icon: <MdCalendarToday className="text-4xl" />,
       title: 'Calendario de Actividades',
       description: 'Consulta fechas de cursos, talleres, seminarios y eventos',
       color: 'from-orange-500 to-orange-600'
     },
     {
-      icon: <Mail className="text-4xl" />,
+      icon: <MdEmail className="text-4xl" />,
       title: 'Suscripción al Boletín',
       description: 'Recibe actualizaciones, noticias y recursos directamente en tu email',
       color: 'from-red-500 to-red-600'
@@ -93,7 +93,7 @@ const Herramientas = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center">
-            <Mail className="text-6xl mx-auto mb-6" />
+            <MdEmail className="text-6xl mx-auto mb-6" />
             <h3 className="text-3xl font-bold mb-4">
               Suscríbete al Boletín ProCC
             </h3>

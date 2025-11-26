@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Share2, MessageCircle, Clock, User, Star, Send, ThumbsUp } from 'react-icons/md'
+import { MdFavorite, MdShare, MdMessage, MdAccessTime, MdPerson, MdStar, MdSend, MdThumbUp } from 'react-icons/md'
 // Función para formatear tiempo relativo
 const formatTimeAgo = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000)
@@ -229,7 +229,7 @@ const Blog = () => {
                         onClick={() => setNewPost({ ...newPost, rating: star })}
                         className={`text-3xl ${star <= newPost.rating ? 'text-yellow-400' : 'text-gray-300'}`}
                       >
-                        <Star />
+                        <MdStar />
                       </button>
                     ))}
                   </div>
@@ -265,7 +265,7 @@ const Blog = () => {
                   <div>
                     <h3 className="font-bold text-gray-900">{post.author}</h3>
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <Clock className="text-xs" />
+                      <MdAccessTime className="text-xs" />
                       <span>
                         {formatTimeAgo(post.timestamp)}
                       </span>
@@ -274,7 +274,7 @@ const Blog = () => {
                 </div>
                 <div className="flex items-center space-x-1">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
+                    <MdStar
                       key={star}
                       className={`text-lg ${star <= post.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
                     />
@@ -298,18 +298,18 @@ const Blog = () => {
                     onClick={() => handleLike(post.id)}
                     className="flex items-center space-x-2 text-gray-600 hover:text-procc-primary transition-colors"
                   >
-                    <Heart className="text-xl" />
+                    <MdFavorite className="text-xl" />
                     <span>{post.likes}</span>
                   </button>
                   <button
                     onClick={() => setSelectedPost(selectedPost === post.id ? null : post.id)}
                     className="flex items-center space-x-2 text-gray-600 hover:text-procc-primary transition-colors"
                   >
-                    <MessageCircle className="text-xl" />
+                    <MdMessage className="text-xl" />
                     <span>{post.comments}</span>
                   </button>
                   <div className="flex items-center space-x-2">
-                    <Share2 className="text-xl text-gray-600" />
+                    <MdShare className="text-xl text-gray-600" />
                     <div className="flex space-x-2">
                       <button
                         onClick={() => handleShare(post, 'twitter')}
@@ -378,7 +378,7 @@ const Blog = () => {
                         onClick={() => handleComment(post.id)}
                         className="px-6 py-2 bg-procc-primary text-white rounded-lg hover:bg-procc-secondary transition-colors"
                       >
-                        <Send />
+                        <MdSend />
                       </button>
                     </div>
                   </motion.div>

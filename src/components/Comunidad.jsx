@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Users, MessageCircle, Share2, TrendingUp, Heart, Award } from 'react-icons/md'
+import { MdPeople, MdMessage, MdShare, MdTrendingUp, MdFavorite, MdEmojiEvents } from 'react-icons/md'
 
 const Comunidad = () => {
   const socialNetworks = [
@@ -54,9 +54,9 @@ const Comunidad = () => {
   ]
 
   const communityStats = [
-    { icon: <Users className="text-4xl" />, number: '5,000+', label: 'Miembros Activos' },
-    { icon: <MessageCircle className="text-4xl" />, number: '12K+', label: 'Mensajes Mensuales' },
-    { icon: <Share2 className="text-4xl" />, number: '3K+', label: 'Recursos Compartidos' },
+    { icon: <MdPeople className="text-4xl" />, number: '5,000+', label: 'Miembros Activos' },
+    { icon: <MdMessage className="text-4xl" />, number: '12K+', label: 'Mensajes Mensuales' },
+    { icon: <MdShare className="text-4xl" />, number: '3K+', label: 'Recursos Compartidos' },
     { icon: <TrendingUp className="text-4xl" />, number: '150+', label: 'Países Representados' }
   ]
 
@@ -145,7 +145,7 @@ const Comunidad = () => {
           viewport={{ once: true }}
         >
           <div className="text-center">
-            <Users className="text-6xl mx-auto mb-6" />
+            <MdPeople className="text-6xl mx-auto mb-6" />
             <h3 className="text-3xl font-bold mb-4">
               ¡Únete a la Comunidad ProCC!
             </h3>
@@ -201,7 +201,7 @@ const Comunidad = () => {
         >
           {[
             {
-              icon: <Heart className="text-4xl text-procc-primary" />,
+              icon: <MdFavorite className="text-4xl text-procc-primary" />,
               title: 'Apoyo Mutuo',
               description: 'Conecta con personas que comparten tus valores y objetivos'
             },
