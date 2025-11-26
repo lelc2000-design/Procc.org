@@ -83,15 +83,16 @@ const Header = ({ isScrolled }) => {
             whileTap={{ scale: 0.95 }}
           >
             <img 
-              src="/logo-procc.svg" 
+              src="https://www.procc.org/wp-content/uploads/2019/06/logo_centrado.png" 
               alt="ProCC Logo" 
-              className="h-12 w-auto"
+              className="h-14 md:h-16 w-auto"
               onError={(e) => {
                 e.target.style.display = 'none';
-                e.target.nextElementSibling.style.display = 'block';
+                const fallback = e.target.nextElementSibling;
+                if (fallback) fallback.style.display = 'block';
               }}
             />
-            <div className="text-3xl font-bold text-procc-primary" style={{ display: 'none' }}>
+            <div className="text-2xl font-bold text-procc-primary" style={{ display: 'none' }}>
               ProCC
             </div>
           </motion.a>

@@ -1,71 +1,38 @@
 import { motion } from 'framer-motion'
 import { MdKeyboardArrowDown, MdPlayCircle } from 'react-icons/md'
-import { books } from '../data/books'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900">
-      {/* Fondo con libros - Efecto Parallax Premium */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='books' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Crect width='100' height='100' fill='%23ffffff' opacity='0.05'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23books)'/%3E%3C/svg%3E")`,
-        }}></div>
-        
-        {/* Libros flotantes decorativos */}
-        <div className="absolute inset-0">
-          {books.slice(0, 6).map((book, idx) => (
-            <motion.div
-              key={book.id}
-              className="absolute"
-              style={{
-                left: `${15 + idx * 15}%`,
-                top: `${20 + (idx % 3) * 30}%`,
-                width: '120px',
-                height: '160px',
-              }}
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, 5, -5, 0],
-              }}
-              transition={{
-                duration: 4 + idx,
-                repeat: Infinity,
-                delay: idx * 0.5,
-              }}
-            >
-              <div className="w-full h-full bg-gradient-to-br from-purple-600/30 to-indigo-600/30 backdrop-blur-sm rounded-lg shadow-2xl border border-white/10 transform perspective-1000">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg"></div>
-                <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-purple-500/50 to-indigo-500/50"></div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Overlay con gradiente */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-purple-900/50 to-black/60"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
+      {/* Background sutil con gradiente muy ligero */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
       
-      {/* Partículas flotantes */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+      {/* Elementos decorativos sutiles */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
+        <motion.div
+          className="absolute top-20 right-10 w-96 h-96 bg-procc-primary/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-10 w-96 h-96 bg-procc-secondary/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.1, 1, 1.1],
+            x: [0, -50, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
 
       {/* Contenido Principal */}
@@ -75,76 +42,79 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Logo Premium */}
+          {/* Logo Real ProCC */}
           <motion.div
-            className="mb-8 flex justify-center"
-            initial={{ scale: 0.8, opacity: 0 }}
+            className="mb-12 flex justify-center"
+            initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <img 
-              src="/logo-procc.svg" 
+              src="https://www.procc.org/wp-content/uploads/2019/06/logo_centrado.png" 
               alt="ProCC Logo" 
-              className="h-20 w-auto drop-shadow-2xl"
+              className="h-24 md:h-32 w-auto"
               onError={(e) => {
+                // Fallback si no carga la imagen
                 e.target.style.display = 'none'
+                const fallback = document.createElement('div')
+                fallback.className = 'text-4xl font-bold text-procc-primary'
+                fallback.textContent = 'ProCC'
+                e.target.parentElement.appendChild(fallback)
               }}
             />
           </motion.div>
 
           {/* Título Principal */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white drop-shadow-2xl"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gray-900"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="bg-gradient-to-r from-white via-purple-200 to-indigo-200 bg-clip-text text-transparent">
-              Proyecto ProCC
-            </span>
+            <span className="text-procc-primary">Proyecto ProCC</span>
           </motion.h1>
-
+          
           {/* Subtítulo */}
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl text-purple-100 mb-8 font-light max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-6 font-light max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
           >
             Trabajamos por una vida cotidiana más humana, más solidaria y más saludable
           </motion.p>
 
           {/* Descripción */}
           <motion.p
-            className="text-lg md:text-xl text-purple-200/90 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
           >
             Favorecemos espacios de encuentro y reflexión acerca de las situaciones y contradicciones cotidianas 
             que nos generan malestar para analizar las causas y buscar alternativas colectivas.
           </motion.p>
 
-          {/* Botones CTA Premium */}
+          {/* Botones CTA Profesionales */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
             <motion.a
               href="#proyecto"
-              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center space-x-3"
+              className="px-8 py-4 bg-procc-primary text-white rounded-full font-semibold text-lg shadow-lg hover:bg-procc-secondary transition-all duration-300 flex items-center space-x-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>Conoce más</span>
-              <MdKeyboardArrowDown className="text-2xl group-hover:animate-bounce" />
+              <MdKeyboardArrowDown className="text-xl" />
             </motion.a>
 
             <motion.a
               href="#metodologia"
-              className="px-8 py-4 bg-white/10 backdrop-blur-lg border-2 border-white/30 text-white rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center space-x-3"
+              className="px-8 py-4 bg-white text-procc-primary rounded-full font-semibold text-lg shadow-lg border-2 border-procc-primary hover:bg-procc-light transition-all duration-300 flex items-center space-x-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -153,29 +123,28 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          {/* Estadísticas Premium */}
+          {/* Estadísticas Profesionales */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
           >
             {[
-              { number: '35+', label: 'Años de Trayectoria', icon: '📚' },
-              { number: '5', label: 'Regiones en España', icon: '📍' },
-              { number: '100+', label: 'Profesionales Formados', icon: '👥' },
+              { number: '35+', label: 'Años de Trayectoria' },
+              { number: '5', label: 'Regiones en España' },
+              { number: '100+', label: 'Profesionales Formados' },
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl hover:bg-white/15 transition-all duration-300"
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 + idx * 0.1 }}
               >
-                <div className="text-4xl mb-2">{stat.icon}</div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.number}</div>
-                <div className="text-purple-200 text-sm font-semibold uppercase tracking-wide">{stat.label}</div>
+                <div className="text-5xl md:text-6xl font-bold text-procc-primary mb-3">{stat.number}</div>
+                <div className="text-gray-600 font-medium text-sm uppercase tracking-wide">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -188,7 +157,7 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
-        <MdKeyboardArrowDown className="text-white text-4xl opacity-60" />
+        <MdKeyboardArrowDown className="text-procc-primary text-3xl opacity-60" />
       </motion.div>
     </section>
   )
