@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MdNewspaper, MdCalendarToday, MdPerson, MdArrowForward, MdFilterList } from 'react-icons/md'
 import { publications, news, podcastEpisodes } from '../data/publications'
 
-const Publicaciones = () => {
+const Publicaciones = ({ embedded = false }) => {
   const [activeFilter, setActiveFilter] = useState('Todas')
   
   const allContent = [...publications, ...news, ...podcastEpisodes].sort((a, b) => {

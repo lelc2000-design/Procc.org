@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { MdMenuBook, MdVideoLibrary, MdMic, MdImage, MdNewspaper } from 'react-icons/md'
-import { publications, news, podcastEpisodes } from '../data/publications'
-import { books } from '../data/books'
-import { videos } from '../data/videos'
-import { podcasts } from '../data/podcasts'
-import { fotografias } from '../data/fotografias'
+import Publicaciones from './Publicaciones'
+import Libros from './Libros'
+import Videos from './Videos'
+import Podcasts from './Podcasts'
+import Fotografias from './Fotografias'
 
 const Decimos = () => {
   const [activeTab, setActiveTab] = useState('publicaciones')
@@ -37,169 +37,20 @@ const Decimos = () => {
   const renderTabContent = () => {
     switch(activeTab) {
       case 'publicaciones':
-        return <PublicacionesContent />
+        return <Publicaciones />
       case 'libros':
-        return <LibrosContent />
+        return <Libros />
       case 'videos':
-        return <VideosContent />
+        return <Videos />
       case 'podcasts':
-        return <PodcastsContent />
+        return <Podcasts />
       case 'fotografias':
-        return <FotografiasContent />
+        return <Fotografias />
       default:
-        return <PublicacionesContent />
+        return <Publicaciones />
     }
   }
 
-  // Componentes de contenido sin wrapper de sección
-  const PublicacionesContent = () => {
-    const [activeFilter, setActiveFilter] = useState('Todas')
-    const allContent = [...publications, ...news, ...podcastEpisodes].sort((a, b) => {
-      const dateA = new Date(a.date || '2000')
-      const dateB = new Date(b.date || '2000')
-      return dateB - dateA
-    })
-    const filteredContent = activeFilter === 'Todas' ? allContent : activeFilter === 'Publicaciones' ? publications : activeFilter === 'Noticias' ? news : podcastEpisodes
-
-    return (
-      <div>
-        <div className="flex flex-wrap gap-3 mb-8 justify-center">
-          {['Todas', 'Publicaciones', 'Noticias', 'Podcasts'].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
-                activeFilter === filter
-                  ? 'bg-procc-primary text-white'
-                  : 'bg-white text-gray-700 border-2 border-procc-primary/20 hover:border-procc-primary'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredContent.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="card-premium"
-            >
-              <h3 className="text-xl font-bold text-procc-primary mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-sm mb-2">{item.category} • {item.date}</p>
-              {item.description && <p className="text-gray-700 text-sm">{item.description}</p>}
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  const LibrosContent = () => {
-    return (
-      <div className="space-y-8">
-        {books.map((book, idx) => (
-          <motion.article
-            key={book.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-xl font-bold text-procc-primary mb-2">
-              <a href={book.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                {book.title}
-              </a>
-            </h3>
-            <p className="text-gray-700 text-sm mb-2">
-              <span className="font-semibold">{book.author}</span> ({book.year})
-            </p>
-            <p className="text-gray-600 leading-relaxed text-sm">{book.description}</p>
-          </motion.article>
-        ))}
-      </div>
-    )
-  }
-
-  const VideosContent = () => {
-    return (
-      <div className="space-y-8">
-        {videos.map((video, idx) => (
-          <motion.article
-            key={video.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-xl font-bold text-procc-primary mb-2">
-              <a href={video.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                {video.title}
-              </a>
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm">{video.description}</p>
-            <p className="text-gray-500 text-xs mt-2">
-              Categoría: <span className="font-semibold">{video.category}</span> | Año: <span className="font-semibold">{video.date}</span>
-            </p>
-          </motion.article>
-        ))}
-      </div>
-    )
-  }
-
-  const PodcastsContent = () => {
-    return (
-      <div className="space-y-8">
-        {podcasts.map((podcast, idx) => (
-          <motion.article
-            key={podcast.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-xl font-bold text-procc-primary mb-2">
-              <a href={podcast.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                {podcast.title}
-              </a>
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm">{podcast.description}</p>
-            <p className="text-gray-500 text-xs mt-2">
-              Fecha: <span className="font-semibold">{podcast.date}</span>
-            </p>
-          </motion.article>
-        ))}
-      </div>
-    )
-  }
-
-  const FotografiasContent = () => {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {fotografias.map((gallery, idx) => (
-          <motion.div
-            key={gallery.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className="card-premium"
-          >
-            <h3 className="text-xl font-bold text-procc-primary mb-4">{gallery.title}</h3>
-            {gallery.images && gallery.images.length > 0 && (
-              <img
-                src={gallery.images[0]}
-                alt={gallery.title}
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-            )}
-            <p className="text-gray-600 text-sm">{gallery.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    )
-  }
 
   return (
     <section id="decimos" className="min-h-screen section-padding bg-gradient-to-b from-gray-50 via-white to-gray-50 relative pt-24 pb-16">
@@ -238,16 +89,12 @@ const Decimos = () => {
             ))}
           </div>
 
-          {/* Contenido de la pestaña activa */}
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {renderTabContent()}
-          </motion.div>
+          {/* Contenido de la pestaña activa - USAR COMPONENTES COMPLETOS */}
+          <div className="relative -mx-8 md:-mx-12">
+            <div className="px-0">
+              {renderTabContent()}
+            </div>
+          </div>
 
         </div>
       </div>
