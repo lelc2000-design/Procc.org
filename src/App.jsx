@@ -35,23 +35,10 @@ function App() {
       setActiveSection(hash)
       setShowFooter(false) // Ocultar footer al cambiar de sección
       
-      // Si es una subsección de SOMOS (proyecto, metodologia, red, equipo, instituciones)
-      // o de HACEMOS (formacion, intervencion, atencion, supervision, asesoria)
-      // mantener la sección principal pero hacer scroll a la subsección
-      const somosSubsections = ['proyecto', 'metodologia', 'red', 'equipo', 'instituciones']
+      // Si es una subsección de HACEMOS, no hacer scroll al top
       const hacemosSubsections = ['formacion', 'intervencion', 'atencion', 'supervision', 'asesoria']
       
-      if (somosSubsections.includes(hash)) {
-        // Mantener SOMOS activo
-        setActiveSection('somos')
-        // Hacer scroll a la subsección después de renderizar
-        setTimeout(() => {
-          const element = document.getElementById(hash)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
-        }, 100)
-      } else if (hacemosSubsections.includes(hash)) {
+      if (hacemosSubsections.includes(hash)) {
         // Ya se maneja en renderSection con initialTab
         // No hacer scroll al top
       } else {
@@ -132,13 +119,17 @@ function App() {
       case 'inicio':
         return <Hero />
       case 'somos':
+        return <Somos activeSubsection={null} />
       case 'proyecto':
+        return <Somos activeSubsection="proyecto" />
       case 'metodologia':
+        return <Somos activeSubsection="metodologia" />
       case 'red':
-      case 'instituciones':
-        return <Somos />
+        return <Somos activeSubsection="red" />
       case 'equipo':
-        return <Equipo />
+        return <Somos activeSubsection="equipo" />
+      case 'instituciones':
+        return <Somos activeSubsection="instituciones" />
       case 'estamos':
       case 'andalucia':
       case 'aragon':
