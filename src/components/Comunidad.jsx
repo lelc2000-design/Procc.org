@@ -206,7 +206,7 @@ const Comunidad = () => {
               description: 'Conecta con personas que comparten tus valores y objetivos'
             },
             {
-              icon: <Award className="text-4xl text-procc-primary" />,
+              icon: <MdEmojiEvents className="text-4xl text-procc-primary" />,
               title: 'Recursos Exclusivos',
               description: 'Accede a materiales, guías y recursos solo para miembros'
             },
