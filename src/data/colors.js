@@ -11,3 +11,4 @@ export const proccColors = {
   backgroundLight: '#f8f9fa' // Fondo gris claro
 }
 
+

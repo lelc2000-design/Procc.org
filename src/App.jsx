@@ -187,7 +187,19 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </main>
-      <Footer showFooter={showFooter} />
+      <AnimatePresence>
+        {showFooter && (
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-0 left-0 right-0 z-[9999]"
+          >
+            <Footer showFooter={showFooter} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
