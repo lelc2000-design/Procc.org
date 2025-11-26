@@ -7,13 +7,17 @@ const Somos = ({ activeSubsection = null }) => {
   const [currentSection, setCurrentSection] = useState(activeSubsection)
 
   useEffect(() => {
-    // Detectar hash en URL para saber qué sección mostrar
+    // Priorizar activeSubsection si viene como prop
+    if (activeSubsection) {
+      setCurrentSection(activeSubsection)
+      return
+    }
+
+    // Si no hay prop, detectar hash en URL
     const hash = window.location.hash.replace('#', '')
     const validSections = ['proyecto', 'metodologia', 'red', 'equipo', 'instituciones']
     if (validSections.includes(hash)) {
       setCurrentSection(hash)
-    } else if (activeSubsection) {
-      setCurrentSection(activeSubsection)
     } else if (hash === 'somos') {
       setCurrentSection(null) // Mostrar todas si es #somos
     } else {
@@ -21,13 +25,16 @@ const Somos = ({ activeSubsection = null }) => {
     }
 
     const handleHashChange = () => {
-      const newHash = window.location.hash.replace('#', '')
-      if (validSections.includes(newHash)) {
-        setCurrentSection(newHash)
-      } else if (newHash === 'somos') {
-        setCurrentSection(null)
-      } else {
-        setCurrentSection(null)
+      // Solo actualizar si no hay activeSubsection
+      if (!activeSubsection) {
+        const newHash = window.location.hash.replace('#', '')
+        if (validSections.includes(newHash)) {
+          setCurrentSection(newHash)
+        } else if (newHash === 'somos') {
+          setCurrentSection(null)
+        } else {
+          setCurrentSection(null)
+        }
       }
     }
 
