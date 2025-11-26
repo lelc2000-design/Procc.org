@@ -54,3 +54,7 @@ PROCCWEB/
 ## 📄 Licencia
 
 Proyecto privado - Todos los derechos reservados
+
+## 🚀 Despliegue
+
+El proyecto está configurado para desplegarse automáticamente en Vercel.
