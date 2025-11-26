@@ -165,7 +165,7 @@ function App() {
   return (
     <div className="h-screen bg-white overflow-hidden flex flex-col">
       <Header isScrolled={isScrolled} setActiveSection={setActiveSection} />
-      <main ref={mainRef} className="flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollBehavior: 'smooth' }}>
+      <main ref={mainRef} className="flex-1 overflow-y-auto overflow-x-hidden relative pt-24" style={{ scrollBehavior: 'smooth' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
