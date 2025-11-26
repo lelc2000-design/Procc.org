@@ -38,6 +38,8 @@ function App() {
         <Hacemos />
         <Decimos />
         <Libros />
+        <UltimasPublicaciones />
+        <Publicaciones />
         <Blog />
         <Calendario />
         <Comunidad />

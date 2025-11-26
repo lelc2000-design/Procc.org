@@ -4,8 +4,11 @@ import { MdKeyboardArrowDown, MdPlayCircle } from 'react-icons/md'
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
-      {/* Background sutil con gradiente muy ligero */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+      {/* Background sutil con gradiente muy ligero y verde claro del logo */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-green-50/20 to-white"></div>
+      
+      {/* Verde claro del logo debajo del texto */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-procc-green-light/30 to-transparent"></div>
       
       {/* Elementos decorativos sutiles */}
       <div className="absolute inset-0 overflow-hidden opacity-30">

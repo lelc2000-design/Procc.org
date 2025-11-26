@@ -12,6 +12,8 @@ export default {
         'procc-accent': '#A78BFA',      // Púrpura acento
         'procc-dark': '#4C1D95',        // Púrpura oscuro
         'procc-light': '#EDE9FE',       // Púrpura claro
+        'procc-green': '#10B981',       // Verde claro del logo
+        'procc-green-light': '#D1FAE5', // Verde muy claro
         'procc-text': '#1F2937',       // Texto principal
         'procc-text-light': '#6B7280',  // Texto secundario
       },

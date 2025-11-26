@@ -48,8 +48,9 @@ const Header = ({ isScrolled }) => {
         { name: 'Fotografías', href: '#fotografias' },
       ]
     },
-    { name: 'BLOG', href: '#blog' },
-    { name: 'CALENDARIO', href: '#calendario' },
+            { name: 'PUBLICACIONES', href: '#publicaciones' },
+            { name: 'BLOG', href: '#blog' },
+            { name: 'CALENDARIO', href: '#calendario' },
     {
       name: 'COMUNIDAD',
       submenu: [

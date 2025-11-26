@@ -4,7 +4,9 @@ import { books } from '../data/books'
 
 const Libros = () => {
   return (
-    <section id="libros" className="section-padding bg-gradient-to-b from-white to-gray-50">
+    <section id="libros" className="section-padding bg-gradient-to-b from-white via-green-50/20 to-white relative">
+      {/* Verde claro del logo debajo */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-procc-green-light/40 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -36,12 +38,15 @@ const Libros = () => {
                     alt={book.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
+                      // Si falla la imagen, mostrar placeholder con gradiente
                       e.target.style.display = 'none'
+                      const placeholder = e.target.nextElementSibling
+                      if (placeholder) placeholder.style.display = 'flex'
                     }}
                   />
                 ) : null}
-                <div className="absolute inset-0 bg-gradient-to-br from-procc-primary/80 to-procc-secondary/80 flex items-center justify-center">
-                  <MdMenuBook className="text-8xl text-white/30" />
+                <div className="absolute inset-0 bg-gradient-to-br from-procc-primary/90 to-procc-secondary/90 flex items-center justify-center">
+                  <MdMenuBook className="text-8xl text-white/40" />
                 </div>
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                   <span className="text-xs font-semibold text-procc-primary">{book.year}</span>
