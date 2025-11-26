@@ -1,9 +1,14 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MdSchool, MdPeople, MdFavorite, MdVisibility, MdBusiness, MdFamilyRestroom, MdChildCare, MdWoman, MdElderly, MdSchool as MdEducation, MdGroups } from 'react-icons/md'
 
-const Hacemos = () => {
-  const [activeTab, setActiveTab] = useState('formacion')
+const Hacemos = ({ initialTab = 'formacion' }) => {
+  const [activeTab, setActiveTab] = useState(initialTab)
+
+  // Actualizar tab cuando cambia el prop
+  useEffect(() => {
+    setActiveTab(initialTab)
+  }, [initialTab])
 
   const areas = {
     formacion: {

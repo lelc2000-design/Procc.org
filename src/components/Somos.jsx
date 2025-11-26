@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MdPeople, MdMenuBook, MdHub, MdEmojiEvents, MdBusiness, MdScience, MdPublic, MdShare, MdAccountBalance } from 'react-icons/md'
+import { teamMembers } from '../data/team'
 
 const Somos = () => {
   return (
@@ -255,33 +256,58 @@ const Somos = () => {
             </div>
           </motion.div>
 
-          {/* EQUIPO PROCC - Link a sección */}
+          {/* EQUIPO PROCC */}
           <motion.div
-            id="equipo-link"
+            id="equipo"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-20"
           >
-            <div className="card-premium max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-procc-primary/10 flex items-center justify-center">
+            <div className="card-premium max-w-6xl mx-auto">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-procc-primary/10 flex items-center justify-center mr-4">
                   <MdEmojiEvents className="text-4xl text-procc-primary" />
                 </div>
+                <h2 className="text-4xl font-bold text-gray-900">Equipo ProCC</h2>
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Equipo ProCC</h2>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                El <strong className="text-procc-primary">equipo del Proyecto ProCC</strong> está conformado por personas que participan de diferentes formas. Aquí presentamos el Departamento Docente Internacional, a las Áreas y las Asociaciones ProCC.
+              
+              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                El <strong className="text-procc-primary">equipo del Proyecto ProCC</strong> está conformado por personas que participan de diferentes formas. A continuación, presentamos los miembros (personas) del equipo docente (que se encargan de impartir la formación para profesionales) y las responsables de la coordinación de las 5 Áreas del Proyecto (Investigación, Acción, Difusión, Relación y Financiación) y las Asociaciones ProCC:
               </p>
-              <motion.a
-                href="#equipo"
-                className="inline-block px-8 py-4 bg-procc-primary text-white rounded-full font-semibold text-lg shadow-premium hover:bg-procc-secondary transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Ver Equipo Completo →
-              </motion.a>
+
+              {/* Grid de miembros del equipo */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {teamMembers.map((member, idx) => (
+                  <motion.div
+                    key={member.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    className="text-center p-4 bg-procc-light rounded-xl hover:bg-procc-primary/10 transition-colors"
+                  >
+                    {member.image && (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                        }}
+                      />
+                    )}
+                    <h4 className="font-bold text-gray-900 text-sm md:text-base mb-1">{member.name}</h4>
+                    {member.role && (
+                      <p className="text-xs text-gray-600 mb-1">{member.role}</p>
+                    )}
+                    {member.area && (
+                      <p className="text-xs text-procc-primary font-semibold">{member.area}</p>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 

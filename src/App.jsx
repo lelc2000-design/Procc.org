@@ -126,12 +126,17 @@ function App() {
       case 'argentina':
         return <Estamos />
       case 'hacemos':
+        return <Hacemos initialTab="formacion" />
       case 'formacion':
+        return <Hacemos initialTab="formacion" />
       case 'intervencion':
+        return <Hacemos initialTab="intervencion" />
       case 'atencion':
+        return <Hacemos initialTab="atencion" />
       case 'supervision':
+        return <Hacemos initialTab="supervision" />
       case 'asesoria':
-        return <Hacemos />
+        return <Hacemos initialTab="asesoria" />
       case 'decimos':
         return <Decimos />
       case 'publicaciones':
