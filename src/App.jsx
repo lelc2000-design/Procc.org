@@ -29,32 +29,6 @@ function App() {
   const mainRef = useRef(null)
 
   useEffect(() => {
-    const mainElement = mainRef.current
-    if (!mainElement) return
-
-    let lastScrollY = mainElement.scrollTop
-    let ticking = false
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = mainElement.scrollTop
-          
-          // Mostrar footer solo cuando se hace scroll hacia abajo
-          if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            setShowFooter(true)
-          } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
-            setShowFooter(false)
-          }
-          
-          setIsScrolled(currentScrollY > 50)
-          lastScrollY = currentScrollY
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-    
     // Detectar hash en URL
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'inicio'
@@ -62,6 +36,7 @@ function App() {
       setShowFooter(false) // Ocultar footer al cambiar de sección
       // Scroll al top cuando cambia la sección - FORZADO
       setTimeout(() => {
+        const mainElement = mainRef.current
         if (mainElement) {
           mainElement.scrollTo({ top: 0, behavior: 'instant' })
         }
@@ -73,15 +48,61 @@ function App() {
 
     // Inicializar con el hash actual
     handleHashChange()
-
-    mainElement.addEventListener('scroll', handleScroll)
     window.addEventListener('hashchange', handleHashChange)
     
     return () => {
-      mainElement.removeEventListener('scroll', handleScroll)
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
+
+  useEffect(() => {
+    const mainElement = mainRef.current
+    if (!mainElement) {
+      // Reintentar después de un breve delay
+      const timer = setTimeout(() => {
+        const retryElement = mainRef.current
+        if (retryElement) {
+          setupScrollListener(retryElement)
+        }
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+
+    let lastScrollY = mainElement.scrollTop || 0
+    let ticking = false
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = mainElement.scrollTop
+          
+          // Detectar dirección del scroll
+          const scrollingDown = currentScrollY > lastScrollY
+          const scrollingUp = currentScrollY < lastScrollY
+          
+          // Mostrar footer cuando se hace scroll hacia abajo (después de 30px)
+          if (scrollingDown && currentScrollY > 30) {
+            setShowFooter(true)
+          } 
+          // Ocultar footer cuando se hace scroll hacia arriba o está en el top
+          else if (scrollingUp || currentScrollY <= 30) {
+            setShowFooter(false)
+          }
+          
+          setIsScrolled(currentScrollY > 50)
+          lastScrollY = currentScrollY
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    mainElement.addEventListener('scroll', handleScroll, { passive: true })
+    
+    return () => {
+      mainElement.removeEventListener('scroll', handleScroll)
+    }
+  }, [activeSection])
 
   // Función para renderizar solo la sección activa - CADA UNA INDEPENDIENTE
   const renderSection = () => {

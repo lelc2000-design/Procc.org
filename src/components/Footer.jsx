@@ -10,7 +10,7 @@ const Footer = ({ showFooter }) => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="fixed bottom-0 left-0 right-0 bg-procc-green text-white py-6 shadow-2xl z-50"
+          className="fixed bottom-0 left-0 right-0 bg-procc-green text-white py-6 shadow-2xl z-[9999]"
         >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Información Básica en Negrita */}
