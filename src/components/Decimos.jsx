@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { MdMenuBook, MdVideoLibrary, MdMic, MdImage, MdNewspaper } from 'react-icons/md'
+import { MdMenuBook, MdVideoLibrary, MdMic, MdImage, MdNewspaper, MdCalendarToday, MdPerson, MdArrowForward } from 'react-icons/md'
 import { publications, news, podcastEpisodes } from '../data/publications'
 import { books } from '../data/books'
 import { videos } from '../data/videos'
