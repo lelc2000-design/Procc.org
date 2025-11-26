@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -25,18 +25,46 @@ import './App.css'
 function App() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  const [showFooter, setShowFooter] = useState(false)
+  const mainRef = useRef(null)
 
   useEffect(() => {
+    const mainElement = mainRef.current
+    if (!mainElement) return
+
+    let lastScrollY = mainElement.scrollTop
+    let ticking = false
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = mainElement.scrollTop
+          
+          // Mostrar footer solo cuando se hace scroll hacia abajo
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            setShowFooter(true)
+          } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
+            setShowFooter(false)
+          }
+          
+          setIsScrolled(currentScrollY > 50)
+          lastScrollY = currentScrollY
+          ticking = false
+        })
+        ticking = true
+      }
     }
     
     // Detectar hash en URL
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'inicio'
       setActiveSection(hash)
+      setShowFooter(false) // Ocultar footer al cambiar de sección
       // Scroll al top cuando cambia la sección - FORZADO
       setTimeout(() => {
+        if (mainElement) {
+          mainElement.scrollTo({ top: 0, behavior: 'instant' })
+        }
         window.scrollTo({ top: 0, behavior: 'instant' })
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
@@ -46,11 +74,11 @@ function App() {
     // Inicializar con el hash actual
     handleHashChange()
 
-    window.addEventListener('scroll', handleScroll)
+    mainElement.addEventListener('scroll', handleScroll)
     window.addEventListener('hashchange', handleHashChange)
     
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      mainElement.removeEventListener('scroll', handleScroll)
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
@@ -118,7 +146,7 @@ function App() {
   return (
     <div className="h-screen bg-white overflow-hidden flex flex-col">
       <Header isScrolled={isScrolled} setActiveSection={setActiveSection} />
-      <main className="flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollBehavior: 'smooth' }}>
+      <main ref={mainRef} className="flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollBehavior: 'smooth' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
@@ -138,7 +166,7 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </main>
-      <Footer />
+      <Footer showFooter={showFooter} />
     </div>
   )
 }

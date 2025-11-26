@@ -1,9 +1,17 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
 
-const Footer = () => {
+const Footer = ({ showFooter }) => {
   return (
-    <footer className="bg-procc-green text-white py-8">
+    <AnimatePresence>
+      {showFooter && (
+        <motion.footer
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="fixed bottom-0 left-0 right-0 bg-procc-green text-white py-6 shadow-2xl z-50"
+        >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Información Básica en Negrita */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -77,7 +85,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+        </motion.footer>
+      )}
+    </AnimatePresence>
   )
 }
 
